@@ -47,7 +47,6 @@ public class Main {
 		n = T.length() - S.length();
 
 		// 연산 순서 뽑기
-		calculate = new int[n];
 		StringBuilder sb = new StringBuilder();
 		sb.append(S);
 		pick(0, sb);
@@ -63,7 +62,6 @@ public class Main {
 			return;
 		}
 		for (int i = 0; i < 2; i++) {
-			calculate[cnt] = i;
 			if (i == 0) {
 				StringBuilder sbA = new StringBuilder(sb);
 				sbA.append("A");
@@ -91,4 +89,5 @@ public class Main {
 		}
 		return false;
 	}
+
 }
