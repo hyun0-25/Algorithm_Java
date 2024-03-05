@@ -34,7 +34,7 @@ import java.util.Arrays;
  * 
  */
 public class Main {
-	static String S, T;
+	static String S, T, reverseT;
 	static boolean head;
 	static int n;
 	static int calculate[];
@@ -44,6 +44,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		S = br.readLine();
 		T = br.readLine();
+		reverseT = new StringBuilder(T).reverse().toString(); 
 		n = T.length() - S.length();
 
 		// 연산 순서 뽑기
@@ -80,10 +81,6 @@ public class Main {
 	}
 	
 	public static boolean contain(String str1) {
-		String reverseT = "";
-		for (int i = T.length() - 1; i >= 0; i--) {
-			reverseT += T.charAt(i);
-		}
 		if (T.contains(str1) || reverseT.contains(str1)) {
 			return true;
 		}
