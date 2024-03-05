@@ -48,13 +48,15 @@ public class Main {
 
 		// 연산 순서 뽑기
 		calculate = new int[n];
-		pick(0, S);
+		StringBuilder sb = new StringBuilder();
+		sb.append(S);
+		pick(0, sb);
 		System.out.println(0);
 	}
 
-	public static void pick(int cnt, String str) {
+	public static void pick(int cnt, StringBuilder sb) {
 		if (cnt == n) {
-			if (T.equals(str)) {
+			if (T.equals(sb.toString())) {
 				System.out.println(1);
 				System.exit(0);
 			}
@@ -63,15 +65,17 @@ public class Main {
 		for (int i = 0; i < 2; i++) {
 			calculate[cnt] = i;
 			if (i == 0) {
-				String strA = str + "A";
-				if(contain(strA)) {
-					pick(cnt + 1, strA);
+				StringBuilder sbA = new StringBuilder(sb);
+				sbA.append("A");
+				if(contain(sbA.toString())) {
+					pick(cnt + 1, sbA);
 				}
 			}
 			if (i == 1) {
-				String strB = reverse(str + "B");
-				if(contain(strB)) {
-					pick(cnt + 1, strB);
+				StringBuilder sbB = new StringBuilder(sb);
+				sbB.append("B").reverse();
+				if(contain(sbB.toString())) {
+					pick(cnt + 1, sbB);
 				}
 			}
 		}
@@ -86,13 +90,5 @@ public class Main {
 			return true;
 		}
 		return false;
-	}
-
-	public static String reverse(String str1) {
-		String newstr = "";
-		for (int i = str1.length() - 1; i >= 0; i--) {
-			newstr += str1.charAt(i);
-		}
-		return newstr;
 	}
 }
