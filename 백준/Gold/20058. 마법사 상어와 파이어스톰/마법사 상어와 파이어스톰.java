@@ -42,7 +42,21 @@ public class Main {
 	static int N,Q,size,total;
 	static int A[][], copyA[][];
 	static int max;
-	static boolean visited[][];
+	static boolean visited[][], minus[][] ;
+	
+	static int dx[] = {-1,1,0,0};
+	static int dy[] = {0,0,-1,1};
+
+	static class Pair{
+		int x,y;
+
+		public Pair(int x, int y) {
+			super();
+			this.x = x;
+			this.y = y;
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -71,19 +85,9 @@ public class Main {
 		System.out.println(max);
 	}
 	
-	static class Pair{
-		int x,y;
-
-		public Pair(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
-		}
-	}
 	public static void bfs(int sx, int sy) {
-		
 		Queue<Pair> q = new ArrayDeque<>();
-		boolean stop = false;
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {				
 				if(A[i][j]!=0 && !visited[i][j]) {
@@ -133,10 +137,9 @@ public class Main {
 
 		return copyA;
 	}
-	static int dx[] = {-1,1,0,0};
-	static int dy[] = {0,0,-1,1};
+
 	public static void ice() {
-		boolean minus[][] = new boolean[size][size];
+		minus = new boolean[size][size];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				if(A[i][j] == 0) continue;
@@ -147,12 +150,12 @@ public class Main {
 					int ny = j+dy[k];
 					if(rangecheck(nx,ny) && A[nx][ny]>0) cnt++;
 				}
+				//-1할 얼음 체크
 				if(cnt<3) {
 					minus[i][j] = true;
 				}
 			}
 		}
-		
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				if(minus[i][j]) {
